@@ -9,8 +9,8 @@ const logger = createLogger('TodosStorage')
 // TODO: Implement the file storage logic
 export class TodosStorage {
   constructor(
-    private readonly s3Client = new XAWS.S3({ signatureVersion: 'v4' }), // should I use AWS instead???
-    private readonly attachmentsS3Bucket = process.env.ATTACHMENTS_S3_BUCKET,
+    private readonly s3Client = new XAWS.S3({ signatureVersion: 'v4' }), 
+    private readonly attachmentsS3Bucket = process.env.ATTACHMENT_S3_BUCKET,
     private readonly signedUrlExpiration = process.env.SIGNED_URL_EXPIRATION
   ) {}
 

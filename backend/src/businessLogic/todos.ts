@@ -1,6 +1,6 @@
 import 'source-map-support/register'
-import { TodosAccess } from '../helpers/todosAcess'
-import { TodosStorage } from '../helpers/attachmentUtils'
+import { TodosAccess } from '../helpers/TodoAccess'
+import { TodosStorage } from '../helpers/TodoStorage'
 import { TodoItem } from '../models/TodoItem'
 import { TodoUpdate } from '../models/TodoUpdate'
 
@@ -8,7 +8,7 @@ import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 
 
-import { v4 as uuid } from 'uuid'
+import * as uuid from 'uuid'
 import { createLogger } from '../utils/logger'
 
 
@@ -28,7 +28,7 @@ export async function createTodo(
   userId: string,
   createTodoRequest: CreateTodoRequest
 ): Promise<TodoItem> {
-  const todoId = uuid()
+  const todoId = uuid.v4()
   logger.info(`creating todo ${todoId} for user ${userId}.`)
 
   const res: TodoItem = {

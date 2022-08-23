@@ -1,4 +1,4 @@
-import { CustomAuthorizerEvent, CustomAuthorizerResult } from 'aws-lambda'
+import { APIGatewayTokenAuthorizerEvent, CustomAuthorizerResult } from 'aws-lambda'
 import 'source-map-support/register'
 
 import { verify } from 'jsonwebtoken'
@@ -51,7 +51,7 @@ async function getCertificate(): Promise<string> {
 }
 
 export const handler = async (
-  event: CustomAuthorizerEvent
+  event: APIGatewayTokenAuthorizerEvent
 ): Promise<CustomAuthorizerResult> => {
   logger.info('Authorizing a user', event.authorizationToken)
   try {
@@ -71,8 +71,8 @@ export const handler = async (
         ]
       }
     }
-  } catch (error) {
-    logger.error('User not authorized', { error: error.message })
+  } catch (e) {
+    logger.error('User not authorized', { error: e.message })
 
     return {
       principalId: 'user',
